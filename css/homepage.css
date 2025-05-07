@@ -112,12 +112,57 @@ body, html {
   gap: 60px; /* Space between ME/STUFF buttons */
 }
 
-/* Style for the button images */
+.buttons-container a {
+  display: inline-block; /* Allows sizing and for pseudo-elements to align properly */
+  position: relative;    /* Establishes a positioning context for ::before */
+  line-height: 0;        /* Helps remove any extra space if <a> wraps <img> tightly */
+}
+
+/* Add the scanline pseudo-element */
+.buttons-container a::before {
+  content: "";            /* Necessary for pseudo-elements to show up */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  /* Create the scanlines */
+  background-image: repeating-linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.2) 0px,  /* Very faint dark line */
+      rgba(0, 0, 0, 0.2) 1px,  /* Line thickness: 1px */
+      transparent 1px,          /* Space after line */
+      transparent 3px           /* Space thickness: 2px (3px - 1px) */
+                                /* Total pattern height: 3px */
+  );
+  background-size: 100% 3px; /* Width 100%, Height of one pattern repetition */
+
+  opacity: 0; /* Hidden by default */
+  transition: opacity 0.2s ease-in-out; /* Smooth fade in/out */
+  pointer-events: none; /* Allows clicks to go through to the button image */
+  z-index: 1; /* Ensures it's on top of the image if there's any stacking issue */
+}
+
+/* Show scanlines on hover */
+.buttons-container a:hover::before {
+  opacity: 0.7; /* Adjust for desired faintness (0.0 to 1.0) */
+}
+
+/* Previous hover effect for the button images (we'll keep the transition on the image itself) */
 #meButton, #stuffButton {
-  width: 300px; /* Example size - adjust as needed */
-  /* height: auto; */ /* Keep aspect ratio */
-  /* Or you could set a max-height: */
-  /* max-height: 100px; */ /* Example max height */
+  width: 300px; /* Or your preferred size */
+  /* Remove any previous filter/transform transitions if they conflict, or adjust */
+  /* transition: transform 0.2s ease-out, filter 0.2s ease-out; */ /* From previous example */
+  /* If you want the image to still scale/brighten a bit underneath the scanlines, keep its transition */
+  transition: transform 0.2s ease-out; /* Example: just transition transform */
+}
+
+/* Optional: if you still want a slight visual cue on the image itself underneath scanlines */
+.buttons-container a:hover #meButton,
+.buttons-container a:hover #stuffButton {
+   transform: scale(1.02); /* A very subtle scale, optional */
+  /* filter: brightness(1.1); */ /* Optional: slight brightness */
 }
 
 /* If the buttons themselves (the <a> tags) need sizing or styling: */
