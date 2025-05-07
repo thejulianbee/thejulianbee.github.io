@@ -51,13 +51,39 @@ body, html {
 .face-container {
   /* Placeholder for styling the face area */
   margin-bottom: 30px; /* Space between face and buttons */
+  text-align: center; /* Helps if the image is smaller than its container */
+}
+
+/* Style for the face image */
+#faceImage {
+  width: 200px; /* Example size - adjust as needed */
+  /* height: auto; */ /* Keep aspect ratio if only width is set */
+  /* Or you could set a max-width: */
+  /* max-width: 80%; */ /* Example: take up 80% of its container's width */
 }
 
 .buttons-container {
   /* Placeholder for styling the buttons area */
   display: flex; /* To lay out ME/STUFF buttons side-by-side if needed */
+  justify-content: center; /* Center buttons horizontally if they don't fill the space */
+  align-items: center; /* Align items vertically */
   gap: 20px; /* Space between ME/STUFF buttons */
 }
+
+/* Style for the button images */
+#meButton, #stuffButton {
+  width: 150px; /* Example size - adjust as needed */
+  /* height: auto; */ /* Keep aspect ratio */
+  /* Or you could set a max-height: */
+  /* max-height: 100px; */ /* Example max height */
+}
+
+/* If the buttons themselves (the <a> tags) need sizing or styling: */
+/*
+.buttons-container a {
+  display: inline-block; // Good for sizing link areas if needed
+}
+*/
 
 /* Placeholder text styling (can be removed later) */
 .side-column p {
