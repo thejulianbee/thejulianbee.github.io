@@ -20,22 +20,56 @@ body, html {
 }
 
 .side-column {
-  flex: 1; /* Distribute space, adjust ratio later if needed e.g., flex-basis: 15%; */
-  padding: 20px;
-  /* Basic styling for visibility, can be removed/changed */
-  /* background-color: rgba(0, 0, 0, 0.3); */ /* Optional: slight dimming for columns */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow-y: hidden; /* For the scrolling text later */
+  flex: 1;
+  padding: 20px; /* Or your preferred padding */
+  display: flex; /* This can stay if you want to align the scrolling container itself */
+  flex-direction: column; /* Aligns children (like the p tags or text container) */
+  align-items: center; /* Centers the text horizontally */
+  overflow-y: hidden; /* Crucial: hides the text that scrolls out of view */
+  /* Remove any temporary background colors if you had them */
 }
 
-.left-column {
-  /* Specific styles for left column if needed */
+/* New styles for the scrolling text containers */
+.scrolling-text-content {
+  width: 100%; /* Ensure it takes the full width of the column */
+  text-align: center; /* Center the <p> tags if their width is less than container */
 }
 
-.right-column {
-  /* Specific styles for right column if needed */
+.scrolling-text-content p {
+  font-family: 'VT323', monospace;
+  margin: 5px 0; /* Adjust vertical spacing between "The Julian Bee" lines */
+  font-size: 1.5em; /* Same as your previous placeholder */
+  opacity: 0.7;     /* Same as your previous placeholder */
+  line-height: 1.2; /* Adjust for tighter/looser line spacing */
+  /* Add any specific text styling from your mockup, e.g., font family, color if different */
+}
+
+/* Animation for the left column (scrolling up) */
+#leftScroll {
+  animation: scrollUp 20s linear infinite; /* Adjust 20s for speed */
+}
+
+/* Animation for the right column (scrolling down) */
+#rightScroll {
+  animation: scrollDown 20s linear infinite; /* Adjust 20s for speed */
+}
+
+@keyframes scrollUp {
+  0% {
+      transform: translateY(0%);
+  }
+  100% {
+      transform: translateY(-50%); /* Scrolls up by the height of one text block */
+  }
+}
+
+@keyframes scrollDown {
+  0% {
+      transform: translateY(-50%); /* Start with the second block in view, first block above */
+  }
+  100% {
+      transform: translateY(0%);   /* Scrolls down to show the first block again */
+  }
 }
 
 .central-content {
@@ -50,16 +84,24 @@ body, html {
 
 .face-container {
   /* Placeholder for styling the face area */
-  margin-bottom: 30px; /* Space between face and buttons */
+  margin-bottom: 140px; /* Space between face and buttons */
   text-align: center; /* Helps if the image is smaller than its container */
 }
 
 /* Style for the face image */
 #faceImage {
-  width: 200px; /* Example size - adjust as needed */
+  width: 450px; /* Example size - adjust as needed */
   /* height: auto; */ /* Keep aspect ratio if only width is set */
   /* Or you could set a max-width: */
   /* max-width: 80%; */ /* Example: take up 80% of its container's width */
+  filter: drop-shadow(0 0 15px rgba(220, 180, 255, 0.7));
+
+  /* --- Bobbing Animation --- */
+  animation-name: bobbingFace;
+  animation-duration: 2s;         /* How long one full up-and-down cycle takes */
+  animation-iteration-count: infinite; /* Loop forever */
+  animation-timing-function: ease-in-out; /* Makes the motion smooth */
+  animation-direction: alternate; /* Goes up, then down, then up, etc. */
 }
 
 .buttons-container {
@@ -67,12 +109,12 @@ body, html {
   display: flex; /* To lay out ME/STUFF buttons side-by-side if needed */
   justify-content: center; /* Center buttons horizontally if they don't fill the space */
   align-items: center; /* Align items vertically */
-  gap: 20px; /* Space between ME/STUFF buttons */
+  gap: 60px; /* Space between ME/STUFF buttons */
 }
 
 /* Style for the button images */
 #meButton, #stuffButton {
-  width: 150px; /* Example size - adjust as needed */
+  width: 300px; /* Example size - adjust as needed */
   /* height: auto; */ /* Keep aspect ratio */
   /* Or you could set a max-height: */
   /* max-height: 100px; */ /* Example max height */
@@ -89,4 +131,20 @@ body, html {
 .side-column p {
   font-size: 1.5em;
   opacity: 0.7;
+}
+
+.vt323-regular {
+  font-family: "VT323", monospace;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+@keyframes bobbingFace {
+  from {
+      transform: translateY(0px); /* Start at its normal position */
+  }
+  to {
+      transform: translateY(-20px); /* Move up by 10 pixels (adjust as needed) */
+  }
 }
