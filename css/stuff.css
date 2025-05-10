@@ -34,18 +34,100 @@ body, html {
                 /* This, combined with overflow-y: auto, is key */
 }
 
-.grid-item {
-  display: block;
+.grid-item { /* This is the <a> tag */
+  display: block; /* Default display state */
   max-width: 250px;
   max-height: 300px;
+  margin: 10px;
+  opacity: 1; /* Start fully visible */
+  transition: opacity 0.3s ease-out; /* <<< CHANGE: Only transition opacity */
+  pointer-events: auto; /* Start interactive */
+  /* nth-child messy transforms apply here */
 }
 
-.grid-item img {
+/* NEW Class for hidden state */
+.grid-item.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.grid-item.is-gone {
+  display: none;
+}
+
+.grid-item-bob-wrapper { /* Wrapper ONLY handles bob */
+  width: 100%;
+  height: 100%;
+  animation-name: gentleBob;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
+  /* <<< REMOVE transform, transform-origin, and transition properties from here */
+}
+
+/* Your nth-child rules for async bobbing delay */
+.grid-item:nth-child(3n+2) .grid-item-bob-wrapper {
+  animation-delay: -0.5s;
+}
+.grid-item:nth-child(3n+3) .grid-item-bob-wrapper {
+  animation-delay: -1.0s;
+}
+
+.grid-item img { /* Image handles scale animation AND hover */
   display: block;
   width: 100%;
   height: 100%;
   object-fit: contain;
+  transform-origin: center center; /* <<< ADD THIS */
+  transform: scale(1);            /* <<< ADD THIS (default scale) */
+  /* Update transition to include transform */
+  transition: transform 0.3s ease-out, filter 0.3s ease-out;
 }
+
+.grid-item.is-hidden img {
+  transform: scale(0.95); /* Scaled-down state */
+}
+
+.grid-item:hover .grid-item-bob-wrapper img {
+  transform: scale(1.07); /* Hover scale */
+  filter: drop-shadow(0 0 12px rgba(230, 200, 255, 0.5));
+}
+
+/* Hover effects applied to image when PARENT <a> is hovered */
+.grid-item:hover .grid-item-bob-wrapper img {
+  transform: scale(1.07);
+  filter: drop-shadow(0 0 12px rgba(230, 200, 255, 0.5));
+}
+
+.grid-item:hover {
+  z-index: 10;
+}
+
+/* Keyframes gentleBob - REMAINS THE SAME */
+@keyframes gentleBob {
+  from { transform: translateY(0px); }
+  to { transform: translateY(-16px); }
+}
+
+/* Messy Placement rules for .grid-item - REMAINS THE SAME */
+.grid-item:nth-child(even) {
+  transform: translate(40px, 23px) rotate(7deg);
+}
+
+.grid-item:nth-child(odd) {
+transform: translate(-23px, 46px) rotate(-5deg);
+}
+
+.grid-item:nth-child(3n) {
+transform: translate(0px, 22px) rotate(-11deg);
+}
+
+.grid-item:nth-child(4n) {
+transform: translate(-10px, -15px) rotate(5deg);
+}
+
+
 
 .scrolling-divider-column {
   flex-grow: 0;
