@@ -1,0 +1,126 @@
+/* css/stanford_campus_tour.css */
+
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'VT323', monospace;
+    background-color: #1a1a1a; /* Or your psychedelic background */
+    /* background-image: url('../assets/images/background.png'); */
+    /* background-size: cover; */
+    /* background-position: center; */
+    /* background-repeat: no-repeat; */
+    /* background-attachment: fixed; */
+    color: #e0e0e0;
+}
+
+.video-page-container {
+    max-width: 800px; /* Content width */
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.video-page-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.video-page-header h1 {
+    font-family: "Papyrus";
+    font-size: 2.5em;
+    color: #fff;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 8px 15px;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 0.9em;
+    transition: background-color 0.2s ease;
+}
+
+.back-link:hover {
+    background-color: #555;
+}
+
+.video-thumbnail-section {
+    margin-bottom: 30px;
+    text-align: center; /* Center the thumbnail link block */
+}
+
+.video-link {
+    display: inline-block; /* Allows for better sizing and hover effects */
+    position: relative; /* For positioning the play button overlay */
+    border: 3px solid #444; /* Optional border around thumbnail */
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+.video-link:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 15px rgba(200, 200, 255, 0.3);
+}
+
+.video-thumbnail-img {
+    display: block; /* Removes extra space below image if link is inline */
+    max-width: 100%;
+    height: auto; /* Maintain aspect ratio */
+}
+
+.play-button-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 60px; /* Adjust size */
+    color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    width: 90px; /* Adjust size */
+    height: 90px; /* Adjust size */
+    line-height: 90px; /* Vertically center the play icon */
+    text-align: center;
+    pointer-events: none; /* So it doesn't interfere with the link */
+    transition: background-color 0.2s ease;
+}
+
+.video-link:hover .play-button-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.watch-on-youtube-text {
+    font-size: 0.9em;
+    color: #aaa;
+    margin-top: 10px;
+}
+
+/* In css/stanford_campus_tour.css */
+
+.text-content-section {
+    position: relative; /* This is essential for the overlay to be positioned correctly within this container. */
+    /* Add any other styling for this section like background, padding, max-width, margin as needed. */
+    /* For example: */
+    /* background-color: rgba(20, 20, 20, 0.85); */
+    /* padding: 20px; */
+    /* max-width: 700px; */
+    /* margin: 20px auto 0 auto; */
+}
+
+.video-page-footer {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #333;
+    font-size: 0.9em;
+    color: #777;
+}
+
+.post-date {
+    margin: 0.25rem 0 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: #666;
+}

@@ -1,0 +1,132 @@
+/* css/chumba_joseph.css */
+
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'VT323', monospace;
+    background-color: #111; /* Your chosen background */
+    /* background-image: url('../assets/images/background.png'); */
+    /* background-size: cover; */
+    /* background-position: center; */
+    /* background-repeat: no-repeat; */
+    /* background-attachment: fixed; */
+    color: #e0e0e0;
+}
+
+/* UPDATED HEADER STYLES */
+.cj-page-header {
+    /* Remove absolute positioning to make it part of the normal document flow */
+    /* position: absolute; */
+    /* top: 0; */
+    /* left: 0; */
+    /* z-index: 100; */
+
+    width: 100%; /* Make it full width */
+    text-align: center; /* Center the back link */
+    padding-top: 30px; /* Add padding at the top of the header */
+    padding-bottom: 20px; /* Add some space below the back link before the hero */
+    box-sizing: border-box; /* Include padding in width calculation if needed */
+}
+
+.back-link {
+    display: inline-block; /* Keep as inline-block for padding to work nicely */
+    padding: 8px 15px;
+    background-color: #333; /* Darker background for the button like in PhD screenshot */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 0.9em;
+    transition: background-color 0.2s ease;
+    /* Remove semi-transparent background if you prefer solid like PhD page */
+    /* background-color: rgba(50, 50, 50, 0.7); */
+}
+
+.back-link:hover {
+    background-color: #555; /* Slightly lighter on hover */
+    /* background-color: rgba(80, 80, 80, 0.9); */
+}
+
+/* UPDATED HERO SECTION STYLES */
+.cj-hero-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: #000; /* Fallback */
+    /* Remove margin-bottom from here if you want to control space via .cj-page-header's padding-bottom */
+    /* margin-bottom: 30px; */
+    /* Add margin-top here to create space between header and hero */
+    /* No, handled by header's padding-bottom */
+}
+
+.cj-hero-image {
+    width: auto;
+    max-width: 100%;
+    max-height: 60vh; /* Adjusted from 70vh, see if this feels better with more top space */
+    object-fit: contain;
+    display: block;
+}
+
+.cj-main-content {
+    max-width: 800px;
+    margin: 30px auto 0 auto; /* Add top margin here to space it from hero */
+    padding: 0 20px 40px 20px;
+}
+
+/* ... (rest of your .cj-article, .inline-image-container, .caption, .cj-page-footer styles remain the same) ... */
+
+/* Ensure these are still present for .cj-article content */
+.cj-article h2 {
+    font-size: 2em;
+    color: #fff;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.cj-article h3 {
+    font-size: 1.6em;
+    color: #eee;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.cj-article p {
+    font-size: 1.1em;
+    line-height: 1.7;
+    margin-bottom: 20px;
+    color: #ccc;
+}
+
+.inline-image-container {
+    margin: 25px auto;
+    text-align: center;
+    max-width: 90%;
+}
+
+.inline-img {
+    max-width: 100%;
+    height: auto;
+    border: 2px solid #555;
+    border-radius: 4px;
+    margin-bottom: 8px;
+}
+
+.inline-img.small-img {
+    max-width: 60%;
+}
+
+.caption {
+    font-size: 0.9em;
+    color: #aaa;
+    font-style: italic;
+}
+
+.cj-page-footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px 0;
+    border-top: 1px solid #333;
+    font-size: 0.9em;
+    color: #777;
+}
