@@ -1,0 +1,138 @@
+/* css/me.css */
+
+/* ... (body, html, me-page-container styles remain the same as the "one-screen" version) ... */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Force full viewport height for "one-screen" feel */
+    font-family: 'VT323', monospace;
+    background-image: url('../assets/images/background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #FFFFFF;
+    overflow: hidden; /* Prevent scrollbars for the one-screen page */
+}
+
+.me-page-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    /* padding-top: 30px; */ /* Removed for now, let content center */
+    box-sizing: border-box;
+}
+
+
+.me-main-content {
+    flex-grow: 1;
+    max-width: 700px;
+    width: 85%;
+    margin: 0 auto;
+    padding: 20px; /* Overall padding for the content area */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    /* The overall .me-main-content does NOT get the dark background.
+       Only the .bio-section will. */
+}
+
+.hero-image-section {
+    text-align: center;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Ensure NO background-color or border-radius here for the "no outline box" effect */
+}
+
+#heroImage {
+    max-width: 100%;
+    max-height: 40vh;
+    object-fit: contain;
+    cursor: pointer;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.bio-section {
+    font-size: 1.2em;
+    line-height: 1.6;
+    text-align: center;
+    margin-bottom: 15px;
+    /* ADD THESE LINES BACK FOR THE BIO SECTION'S BACKGROUND: */
+    background-color: rgba(0, 0, 0, 0.55); /* Adjust opacity as desired (0.4 is 40% opaque black) */
+    padding: 15px 20px; /* Add some padding inside the bio box */
+    border-radius: 8px; /* Optional: rounded corners for this bio box */
+}
+
+.bio-section p {
+    margin-bottom: 1em;
+}
+
+.swappable-text {
+    color: #FFD700; /* Or your chosen color */
+    cursor: pointer;
+    padding: 0 3px;
+    transition: color 0.2s ease;
+}
+
+.swappable-text:hover {
+    color: #FFA500; /* Or your chosen hover color */
+}
+
+/* ... (fixed-controls-container, die-button, homepage-link-icon, me-page-footer styles remain the same) ... */
+.fixed-controls-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1000;
+}
+
+.die-button {
+    font-size: 2.5em;
+    padding: 8px 15px;
+    background-color: rgba(80, 50, 120, 0.7);
+    color: #fff;
+    border: 2px solid rgba(220, 180, 255, 0.7);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    margin-bottom: 10px;
+}
+
+.die-button:hover {
+    background-color: rgba(100, 70, 150, 0.9);
+    transform: scale(1.05);
+}
+
+.die-button:active {
+    transform: scale(0.95);
+}
+
+.homepage-link-icon {
+  display: block;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  transition: transform 0.2s ease-in-out;
+}
+
+.homepage-link-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+.homepage-link-icon:hover {
+  transform: scale(1.1);
+}
+
+.me-page-footer {
+    display: none; /* Keeping footer hidden for "one-screen" page */
+}
