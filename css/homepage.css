@@ -232,3 +232,40 @@ body, html {
     max-width:320px;
   }
 }
+
+/* ---------- extra mobile fixes (≤ 600 px) ---------- */
+@media (max-width: 600px){
+
+  /* force the page to scroll */
+  html, body{
+    height:auto !important;      /* override earlier 100% / 100vh */
+    overflow-y:auto !important;  /* cancel overflow:hidden          */
+  }
+
+  /* give the stacked layout tighter spacing */
+  .main-container{
+    padding-top:20px;
+    gap:20px;
+  }
+
+  .face-container{
+    margin-bottom:0;             /* remove the big desktop gap */
+  }
+
+  /* slightly smaller face so both buttons fit sooner */
+  #faceImage{
+    width:60vw;                  /* 60 % of viewport width */
+    max-width:280px;
+  }
+
+  /* buttons still stack but closer together */
+  .buttons-container{
+    gap:16px;
+  }
+
+  #meButton,
+  #stuffButton{
+    width:70vw;                  /* scale fluidly */
+    max-width:320px;
+  }
+}
