@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Slot 0: Hero Images (image paths relative to the HTML file)
         slot0: [
             'assets/images/me1.png',
-            'assets/images/me2.png',
+            'assets/images/me2.PNG',
             'assets/images/me3.png',
             'assets/images/me4.png'
         ],
