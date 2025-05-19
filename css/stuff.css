@@ -308,3 +308,37 @@ transform: translate(-10px, -15px) rotate(5deg);
     right:12px;
   }
 }
+
+/* ---------- extra mobile fixes (< 600 px) ---------- */
+@media (max-width: 600px){
+
+  /* 1 — restore vertical scrolling */
+  html, body{
+    height:auto !important;      /* cancel any 100 vh */
+    overflow-y:auto !important;  /* allow page to scroll */
+  }
+
+  /* 2 — reduce top/bottom padding and inter‑section gaps */
+  .main-container{
+    padding-top:20px;            /* was larger on desktop */
+    gap:20px;                    /* space between face & buttons */
+  }
+
+  /* 3 — hero image a touch smaller so it shares the screen */
+  #faceImage{
+    width:60vw;                  /* ~60 % of viewport width */
+    max-width:280px;
+    margin-bottom:0;             /* remove extra bottom margin */
+  }
+
+  /* 4 — buttons tighter & centred */
+  .buttons-container{
+    gap:16px;                    /* shrink space between ME/STUFF */
+    margin-top:0;                /* cut empty gap */
+  }
+
+  .big-button{                   /* actual class from file */
+    width:70vw;                  /* fluid width */
+    max-width:320px;
+  }
+}
