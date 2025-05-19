@@ -269,3 +269,24 @@ body, html {
     max-width:320px;
   }
 }
+
+/* ---------- final mobile patch (≤ 600 px) ---------- */
+@media (max-width: 600px){
+
+  /* make sure the swirl covers full viewport
+     even when content is short */
+  .main-container{
+    min-height:100vh;    /* at least one full screen tall */
+  }
+
+  /* tighten spacing so face + 2 buttons sit closer */
+  .main-container{
+    gap:14px;            /* was 20px */
+  }
+
+  /* optional: a little smaller face for small iPhones */
+  #faceImage{
+    width:55vw;
+    max-width:260px;
+  }
+}
