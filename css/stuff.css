@@ -239,3 +239,72 @@ transform: translate(-10px, -15px) rotate(5deg);
 .homepage-link-icon:hover {
   transform: scale(1.1); /* Slight zoom on hover */
 }
+
+/* ---------- mobile tweaks (< 600 px) ---------- */
+@media (max-width: 600px){
+
+  /* allow the page to scroll; fixed 100 vh is too tight on phones */
+  body, html{
+    height:auto;
+    overflow-y:auto;
+  }
+
+  /* stack the three columns:   filter  |  grid  |  (hide divider)   */
+  .stuff-container{
+    flex-direction:column;
+    height:auto;              /* let it grow naturally */
+  }
+
+  /* 1 — filter panel goes to the top and stretches full‑width */
+  .filter-sidebar{
+    order:-1;                 /* comes first in the column flow */
+    flex-basis:auto;
+    width:100%;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    padding:10px 15px;
+    background:rgba(0,0,0,.35);   /* translucent strip behind buttons */
+  }
+
+  .filter-sidebar h2{
+    flex-basis:100%;
+    margin:0 0 6px;
+    font-size:1.4em;
+    text-align:center;
+  }
+
+  .filter-sidebar button{
+    flex:1 1 42%;            /* two buttons per row */
+    max-width:160px;
+    margin:0;
+  }
+
+  /* 2 — hide the scrolling “JULIAN BEE” divider column */
+  .scrolling-divider-column{
+    display:none;
+  }
+
+  /* 3 — grid fills the screen, centred */
+  .content-grid{
+    flex-basis:auto;
+    width:100%;
+    justify-content:center;
+    gap:16px;
+    padding:16px;
+  }
+
+  .grid-item{
+    max-width:45vw;          /* two posters side‑by‑side */
+    max-height:none;
+    margin:0;
+  }
+
+  /* 4 — resize fixed home icon */
+  .homepage-link-icon{
+    width:60px;
+    height:60px;
+    bottom:12px;
+    right:12px;
+  }
+}

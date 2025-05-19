@@ -197,29 +197,38 @@ body, html {
 /* ---------- mobile tweaks (< 600 px) ---------- */
 @media (max-width: 600px){
 
-  /* hide the left / right name repeats */
-  .name-column{
+  /* hide both scrolling‑text side columns */
+  .side-column{
     display:none;
   }
 
-  /* stack the layout vertically */
-  body{
-    display:flex;
-    flex-direction:column;
-    align-items:center;       /* keep everything centred */
+  /* let the main container stack vertically */
+  .main-container{
+    flex-direction:column;      /* was row */
+    align-items:center;
+    height:auto;                /* allow natural height */
+    overflow-y:auto;            /* body can scroll */
   }
 
-  /* make the hero face scale with screen */
-  .hero-face{
-    width:70vw;               /* 70 % of viewport width */
-    height:auto;              /* preserve aspect ratio   */
+  /* resize the hero face */
+  #faceImage{
+    width:70vw;                 /* 70 % of viewport width */
+    max-width:320px;            /* cap on larger phones */
+    height:auto;
   }
 
-  /* buttons go full‑width and stack */
-  .big-button{                /* whatever class the boxes use */
-    width:80vw;
-    max-width:350px;          /* don’t get unfamously huge on tablets */
-    display:block;
-    margin:10px 0;            /* space between ME and STUFF */
+  /* stack ME / STUFF buttons and make them fluid */
+  .buttons-container{
+    flex-direction:column;      /* was row */
+    gap:24px;                   /* space between tiles */
+    width:100%;
+    align-items:center;         /* keep them centred */
+  }
+
+  /* scale button images */
+  #meButton,
+  #stuffButton{
+    width:70vw;
+    max-width:320px;
   }
 }

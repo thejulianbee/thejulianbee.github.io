@@ -136,3 +136,49 @@ body, html {
 .me-page-footer {
     display: none; /* Keeping footer hidden for "one-screen" page */
 }
+
+/* ---------- mobile tweaks (< 600 px) ---------- */
+@media (max-width: 600px){
+
+  /* let the page scroll – the one‑screen “lock” is too tight on phones */
+  body, html{
+    height:auto;           /* cancel the forced 100 vh */
+    overflow-y:auto;       /* allow vertical scrolling  */
+  }
+
+  /* keep layout centred but fluid */
+  .me-main-content{
+    width: 90vw;           /* stretch to most of the screen */
+    padding: 10px;         /* breathe a bit */
+  }
+
+  /* hero picture scales with viewport */
+  #heroImage{
+    width: 70vw;
+    height:auto;
+    max-height: 50vh;      /* stay visible above the bio box */
+  }
+
+  /* bio box fits small screens */
+  .bio-section{
+    font-size: 1rem;       /* was 1.2rem */
+    line-height: 1.5;
+    padding: 12px 14px;
+  }
+
+  /* fixed controls smaller & pulled in */
+  .fixed-controls-container{
+    bottom: 12px;
+    right: 12px;
+  }
+
+  .die-button{
+    font-size: 2em;
+    padding: 6px 12px;
+  }
+
+  .homepage-link-icon{
+    width: 56px;
+    height: 56px;
+  }
+}
