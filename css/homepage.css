@@ -193,3 +193,33 @@ body, html {
       transform: translateY(-20px); /* Move up by 10 pixels (adjust as needed) */
   }
 }
+
+/* ---------- mobile tweaks (< 600 px) ---------- */
+@media (max-width: 600px){
+
+  /* hide the left / right name repeats */
+  .name-column{
+    display:none;
+  }
+
+  /* stack the layout vertically */
+  body{
+    display:flex;
+    flex-direction:column;
+    align-items:center;       /* keep everything centred */
+  }
+
+  /* make the hero face scale with screen */
+  .hero-face{
+    width:70vw;               /* 70 % of viewport width */
+    height:auto;              /* preserve aspect ratio   */
+  }
+
+  /* buttons go full‑width and stack */
+  .big-button{                /* whatever class the boxes use */
+    width:80vw;
+    max-width:350px;          /* don’t get unfamously huge on tablets */
+    display:block;
+    margin:10px 0;            /* space between ME and STUFF */
+  }
+}
