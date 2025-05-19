@@ -1,0 +1,19 @@
+/* Theme overrides for Soft Bodies essay */
+:root {
+  --bg: #0c0213;          /* near‑black backdrop */
+  --fg: #ebeffe;          /* ice‑blue text */
+  --link: #638ba2;        /* cyan links */
+  --trim: #d7f0fe;        /* light‑blue borders & drop‑cap (matches original) */
+  --font-body: 'Tinos', serif;
+  --font-heading: 'Tinos', serif;
+}
+
+/* heading colours */
+.essay-header h1,
+.essay-content h2 { color: var(--fg); }
+
+/* hero image height cap */
+figure.hero img { max-height: 350px; width: auto; }
+
+/* back‑button hover colour */
+.back-link:hover { background: var(--link); }

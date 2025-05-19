@@ -1,120 +1,67 @@
 document.addEventListener('DOMContentLoaded', () => {
   const filterButtons = document.querySelectorAll('.filter-sidebar button');
-  const contentItems = document.querySelectorAll('.content-grid .grid-item');
-  const transitionDuration = 300; // Matches your CSS transition duration
+  const contentItems  = document.querySelectorAll('.content-grid .grid-item');
+  const transitionDuration = 300; // matches CSS
 
-  // --- Helper function to reliably trigger fade-in ---
+  /* ---------------- helper: fade‑in ---------------- */
   function showItem(item) {
-      if (!item) return; // Guard against null items
+    if (!item) return;
 
-      // Function to remove the 'is-hidden' class (triggers transitions)
-      function triggerTransitions() {
-          item.classList.remove('is-hidden');
-      }
+    const trigger = () => item.classList.remove('is-hidden');
 
-      // If it's completely gone from layout ('display: none')
-      if (item.classList.contains('is-gone')) {
-          item.classList.remove('is-gone'); // Make it 'display: block'
-
-          // Use a minimal setTimeout to delay triggering transitions
-          setTimeout(triggerTransitions, 30); // Delay allows display:block to process
-
-      } else if (item.classList.contains('is-hidden')) {
-          // If already display: block but hidden via class, maybe still need delay
-          setTimeout(triggerTransitions, 30);
-      }
-      // If already visible, do nothing
+    if (item.classList.contains('is-gone')) {
+      item.classList.remove('is-gone');
+      setTimeout(trigger, 30);            // allow display:block to register
+    } else if (item.classList.contains('is-hidden')) {
+      setTimeout(trigger, 30);            // still need the delay
+    }
   }
 
-  // --- Helper function to reliably trigger fade-out and set display:none ---
+  /* ---------------- helper: fade‑out ---------------- */
   function hideItem(item) {
-      if (!item || item.classList.contains('is-hidden')) return; // Guard / Already hiding
+    if (!item || item.classList.contains('is-hidden')) return;
 
-      // Clear any existing hide timeout for this item
-      if (item.dataset.hideTimeout) {
-          clearTimeout(item.dataset.hideTimeout);
-      }
+    if (item.dataset.hideTimeout) clearTimeout(item.dataset.hideTimeout);
 
-      // Add 'is-hidden' class to start the opacity/scale transition
-      item.classList.add('is-hidden');
-
-      // Set timeout to add 'is-gone' (display:none) after transition finishes
-      item.dataset.hideTimeout = setTimeout(() => {
-          // Ensure it's still meant to be hidden before setting display:none
-          if (item.classList.contains('is-hidden')) {
-              item.classList.add('is-gone');
-          }
-          delete item.dataset.hideTimeout; // Clear the stored timeout ID
-      }, transitionDuration);
+    item.classList.add('is-hidden');
+    item.dataset.hideTimeout = setTimeout(() => {
+      if (item.classList.contains('is-hidden')) item.classList.add('is-gone');
+      delete item.dataset.hideTimeout;
+    }, transitionDuration);
   }
 
-  // --- Main filter function is removed, logic moved to click handler ---
-
-  // --- Modified Click Handler for Two-Phase Filtering ---
+  /* ---------------- click handler ------------------ */
   filterButtons.forEach(button => {
-      button.addEventListener('click', () => {
-          // If already active, do nothing
-          if (button.classList.contains('active')) {
-              return;
-          }
+    button.addEventListener('click', () => {
+      if (button.classList.contains('active')) return;
 
-          const selectedCategory = button.dataset.filter;
+      const selected = button.dataset.filter;
 
-          // Update active button style immediately
-          filterButtons.forEach(btn => btn.classList.remove('active'));
-          button.classList.add('active');
+      filterButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
 
-          // --- Phase 1: Hide ALL currently visible items ---
-          let itemsToHide = [];
-          contentItems.forEach(item => {
-              // Check if item is currently visible (not hidden or gone)
-              if (!item.classList.contains('is-hidden') && !item.classList.contains('is-gone')) {
-                  itemsToHide.push(item); // Store items to hide
-                  hideItem(item); // Start hide animation immediately
-              }
-              // Clear any pending show timeouts (if any were added)
-              // (We removed the show timeout tracking, but good practice if added back)
-          });
-
-          // --- Phase 2: After fade-out, show the required items ---
-          setTimeout(() => {
-              contentItems.forEach(item => {
-                  const itemCategory = item.dataset.category;
-                  const shouldShow = (selectedCategory === 'all' || itemCategory === selectedCategory);
-
-                  if (shouldShow) {
-                      showItem(item); // Trigger fade-in animation
-                  } else {
-                      // Ensure items that shouldn't show ARE display:none
-                      // hideItem would have set the timeout, but we can be explicit here
-                      // to ensure they are gone if the hideItem timeout hasn't fired yet
-                      // Or, rely on hideItem's timeout to eventually add 'is-gone'.
-                      // Let's rely on hideItem's timeout for simplicity for now.
-                      // If hideItem was called, it will eventually add 'is-gone'.
-                      // If hideItem wasn't called (it was already hidden), it should remain hidden.
-                  }
-              });
-          }, transitionDuration + 10); // Wait for fade-out plus a small buffer
-
-      });
-  });
-
-  // --- Initial Page Load ---
-  // Start all items hidden
-  contentItems.forEach(item => {
-     item.classList.add('is-hidden');
-     item.classList.add('is-gone');
-  });
-
-  // Animate in the initial "ALL" items after a short delay
-  setTimeout(() => {
+      /* phase 1: hide everything currently visible */
+      const toHide = [];
       contentItems.forEach(item => {
-          // No category check needed here, "all" means show everything initially
-           showItem(item);
+        if (!item.classList.contains('is-hidden') &&
+            !item.classList.contains('is-gone')) {
+          toHide.push(item);
+          hideItem(item);
+        }
       });
-  }, 50); // Delay allows initial hidden state to render
 
- // Ensure ALL button is active visually
- document.querySelector('.filter-sidebar button[data-filter="all"]').classList.add('active');
+      /* phase 2: after fade‑out, show the ones we need */
+      setTimeout(() => {
+        contentItems.forEach(item => {
+          const cat = item.dataset.category;
+          const shouldShow = (selected === 'all' || cat === selected);
+          if (shouldShow) showItem(item);
+        });
+      }, transitionDuration);
+    });
+  });
 
+  /* initial fade‑in so grid doesn’t flash */
+  contentItems.forEach(it => it.classList.add('is-hidden'));
+  setTimeout(() => contentItems.forEach(showItem), 50);
 });

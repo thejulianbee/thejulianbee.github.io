@@ -1,6 +1,5 @@
-// accordion.js — final
+// accordion.js — original, un‑modified
 document.addEventListener('DOMContentLoaded', () => {
-
   document.querySelectorAll('ol.collapsible li').forEach(li => {
     const sub = li.querySelector(':scope > ol');
     if (!sub) return;
@@ -16,8 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
     li.prepend(btn);
 
     btn.addEventListener('click', () => {
-
-      /* open or close this sub‑list */
       const opening = sub.hidden;
       sub.hidden = !opening;
       li.classList.toggle('open', opening);
@@ -25,20 +22,19 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.setAttribute('aria-expanded', opening);
 
       if (opening) {
-        // let browser recalc, then set explicit height so it’ll animate
+        // expanding: let the browser recalc, then set explicit height so it animates
         sub.style.maxHeight = sub.scrollHeight + 'px';
       } else {
-        // collapsing: go from current pixel height down to 0
-        sub.style.maxHeight = sub.scrollHeight + 'px';   // start height
-        requestAnimationFrame(() => sub.style.maxHeight = '0');
+        // collapsing: go from current height to 0
+        sub.style.maxHeight = sub.scrollHeight + 'px'; // force start height
+        /* allow repaint */
+        requestAnimationFrame(() => (sub.style.maxHeight = '0'));
       }
     });
 
-    /* whenever a transition finishes, clear inline height so parents can grow naturally */
-    sub.addEventListener('transitionend', e => {
-      if (e.propertyName !== 'max-height') return;
-      if (!li.classList.contains('open')) return;
-      sub.style.maxHeight = 'none';   // let it be auto‑height from now on
+    /* after the expand animation finishes, let the list size naturally */
+    sub.addEventListener('transitionend', () => {
+      if (li.classList.contains('open')) sub.style.maxHeight = 'none';
     });
   });
 });

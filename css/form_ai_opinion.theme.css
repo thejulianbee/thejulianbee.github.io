@@ -1,0 +1,123 @@
+:root {
+  --bg: #17082d;               /* deep indigo backdrop */
+  --fg: #ede9dd;               /* warm light text */
+  --link: #86d18f;             /* mint links & accents */
+  --trim: #86d18f;             /* borders & drop‑cap */
+  --font-body: 'Source Code Pro', monospace;
+  --font-heading: 'Source Code Pro', monospace;
+}
+
+/* -------------------------------------------------------------- */
+/* heading colours + dividers                                     */
+.essay-header h1              { color: var(--fg); }
+
+.essay-content h2{
+  color: var(--link);
+  border-bottom: 1px solid var(--link);
+}
+
+.essay-content h3{
+  color: #d186c2;                       /* lavender */
+  border-bottom: 1px solid #d186c2;
+  margin-top:2.25rem;
+  margin-bottom:1.25rem;
+}
+
+/* -------------------------------------------------------------- */
+/* back‑button hover colour                                       */
+.back-link:hover{ background: #47884f; }
+
+/* -------------------------------------------------------------- */
+/* pull‑quote block (mb‑quote)                                    */
+.mb-quote{
+  font-size:1.4rem;
+  color:#d186c2;              /* lavender */
+  font-style:italic;
+  text-align:center;
+  max-width:70ch;
+  margin:3rem auto 1.5rem;
+  position:relative;
+}
+
+/* -------------------------------------------------------------- */
+/* collapsible numbered‑list styling (ported verbatim)            */
+ol.collapsible{
+  margin:1rem 0;
+  color:var(--fg);
+  padding-left:1.5rem;
+  font-size:1.15rem;
+  line-height:1.6;
+}
+
+ol.collapsible li{ position:relative; padding-left:1.75rem; }
+
+.toggle{
+  position:absolute;
+  left:0; top:.15rem;
+  border:none; background:none; font:inherit;
+  cursor:pointer; line-height:1; user-select:none;
+  transition:transform .25s;
+  color:#d186c2;
+}
+
+li.has-sublist > ol{
+  overflow:hidden; max-height:0; opacity:0;
+  transition:max-height .35s ease, opacity .35s ease;
+}
+
+li.has-sublist.open > ol{
+  opacity:1;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(134,209,143,.15);
+  border-radius:.4rem;
+  padding:.5rem 0 0 .5rem;
+}
+
+li.has-sublist.open > ol > li{
+  list-style:none; position:relative; padding-left:1.4rem; margin:.4rem 0;
+}
+
+li.has-sublist.open > ol > li + li{
+  border-top:1px solid rgba(255,255,255,.07);
+  padding-top:.6rem;
+}
+
+li.has-sublist.open > ol > li.has-sublist.open > ol{
+  margin-left:.75rem; margin-right:.75rem;
+}
+
+li.has-sublist.open > .toggle{ transform:rotate(90deg); }
+
+/* -------------------------------------------------------------- */
+/* animated underline + hover tint for inline links               */
+a{
+  color:var(--link);
+  text-decoration:none;
+  position:relative;
+  transition:color .2s ease;
+}
+
+a::after{
+  content:"";
+  position:absolute;
+  left:0; bottom:-2px;
+  width:100%; height:1px;
+  background:var(--link);
+  opacity:.35;
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform .25s ease, opacity .25s ease;
+}
+
+a:hover,
+a:focus{ color:#d186c2; }
+
+a:hover::after,
+a:focus::after{
+  transform:scaleX(1);
+  opacity:.7;
+}
+
+/* bullet‑list links a touch larger */
+.essay-content ul li a{ font-size:1.05em; }
+.essay-content ul li   { margin-bottom:.75rem; }

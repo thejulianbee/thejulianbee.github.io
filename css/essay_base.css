@@ -1,0 +1,130 @@
+/*! essay_base.css
+   Shared base styles for essay pages.
+   Import this first, then a per‑page theme file that sets custom CSS variables.
+   ------------------------------------------------------------------------- */
+
+:root {
+  --bg: #ffffff;        /* page background */
+  --fg: #141310;        /* default text colour */
+  --link: #39489d;      /* inline link colour */
+  --trim: #39489d;      /* header/back‑link border & drop‑cap colour */
+  --font-body: 'Tinos', serif;
+  --font-heading: 'Tinos', serif;
+}
+
+/* --- reset -------------------------------------------------------------- */
+*,*::before,*::after{box-sizing:border-box;}
+
+html,body{
+  margin:0;
+  padding:0;
+  height:100%;
+  background:var(--bg);
+  color:var(--fg);
+  font-family:var(--font-body);
+  line-height:1.7;
+}
+
+a{color:var(--link);}
+a:hover,a:focus{opacity:.85;}
+
+/* --- layout wrapper ----------------------------------------------------- */
+.essay-page-container{
+  max-width:800px;
+  margin:0 auto;
+  padding:20px;
+  min-height:100vh;
+}
+
+/* --- header ------------------------------------------------------------- */
+.essay-header{
+  text-align:center;
+  margin-bottom:30px;
+  border-bottom:2px solid var(--trim);
+  padding-bottom:20px;
+}
+
+.back-link{
+  display:inline-block;
+  margin-bottom:20px;
+  padding:8px 15px;
+  background:var(--bg);
+  color:var(--trim);
+  text-decoration:none;
+  border:1px solid var(--trim);
+  border-radius:4px;
+  font-size:.9em;
+  transition:background-color .2s ease,opacity .2s ease;
+}
+.back-link:hover{background:#e0e0e0;opacity:.85;}
+
+.essay-header h1{
+  font-family:var(--font-heading);
+  font-size:2.5em;
+  margin:10px 0;
+  color:#111;
+}
+
+.post-date{
+  margin:.5rem 0 1.25rem;
+  font-size:.9rem;
+  font-weight:500;
+  letter-spacing:.04em;
+  color:#666;
+}
+
+/* --- hero --------------------------------------------------------------- */
+figure.hero{margin:0 0 2rem;text-align:center;}
+figure.hero img{max-width:100%;height:auto;border-radius:4px;}
+
+/* --- content ------------------------------------------------------------ */
+.essay-content section{margin-bottom:25px;}
+
+.essay-content h2{
+  font-size:1.8em;
+  color:#222;
+  margin:30px 0 15px;
+  border-bottom:1px solid #f0f0f0;
+  padding-bottom:5px;
+}
+
+.essay-content p{
+  font-size:1.1em;
+  margin:0 0 15px;
+  text-align:justify;
+}
+
+/* drop‑cap on very first paragraph */
+.essay-content section:first-of-type p:first-of-type::first-letter{
+  font-size:4.5rem;
+  line-height:1;
+  float:left;
+  margin:.05em .1em 0 0;
+  font-weight:700;
+  color:var(--trim);
+}
+
+/* --- footer ------------------------------------------------------------- */
+.essay-footer{
+  text-align:center;
+  margin-top:40px;
+  padding-top:20px;
+  border-top:1px solid #eee;
+  font-size:.9em;
+  color:#777;
+}
+
+/* --- accordion ---------------------------------------------------------- */
+.accordion{margin-bottom:1rem;}
+.accordion label{display:block;cursor:pointer;font-weight:600;padding:.5rem 0;}
+.accordion .answer{max-height:0;overflow:hidden;transition:max-height .3s ease;padding-left:1rem;}
+.accordion input{display:none;}
+.accordion input:checked + label + .answer{max-height:200px;}
+
+/* --- responsive --------------------------------------------------------- */
+@media(max-width:600px){
+  figure.hero img{border-radius:4px;}
+}
+
+/* --- utility ------------------------------------------------------------ */
+.tinytext{font-size:.2rem;}
