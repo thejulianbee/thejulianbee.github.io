@@ -45,6 +45,12 @@ body, html {
   /* nth-child messy transforms apply here */
 }
 
+/* Make the improv-on-demand thumbnail a little smaller than the rest */
+.grid-item[href="pages/content/pictures/improv_on_demand.html"] {
+  max-width: 200px;
+  max-height: 240px;
+}
+
 /* NEW Class for hidden state */
 .grid-item.is-hidden {
   opacity: 0;

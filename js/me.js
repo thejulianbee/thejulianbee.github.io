@@ -9,13 +9,14 @@ document.addEventListener('DOMContentLoaded', () => {
             'assets/images/me1.png',
             'assets/images/me2.PNG',
             'assets/images/me3.png',
-            'assets/images/me4.png'
+            'assets/images/me4.png',
+            'assets/images/me5.png'
         ],
         // Slot 1: Age/Description
         slot1: [
-            'TWENTY FOUR YEARS OLD',
+            'TWENTY FIVE YEARS OLD',
             'FIVE FOOT SEVEN',
-            'ABOUT 170 LBS',
+            'ABOUT 180 LBS',
             'MALE',
             'SINGLE'
         ],
@@ -50,7 +51,8 @@ document.addEventListener('DOMContentLoaded', () => {
         slot5: [
             'GUITAR',
             'BLENDER',
-            'ML' // Machine Learning
+            'COOKING',
+            'BREWING'
         ],
         // Slot 6: He likes to make people
         slot6: [
@@ -58,7 +60,9 @@ document.addEventListener('DOMContentLoaded', () => {
           "THINK",
           "FRIGHTENED",
           "HAPPY",
-          "HIS TOOLS"
+          "HIS TOOLS",
+          "OUT OF GINGERBREAD",
+          "READ MORE",
         ]
     };
 
